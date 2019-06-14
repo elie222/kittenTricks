@@ -27,6 +27,11 @@
     ],
     "splash": {
       "image": "src/assets/images/source/splash.png"
-    }
+    },
+    "platforms": [
+      "android",
+      "ios",
+      "web"
+    ]
   }
 }
