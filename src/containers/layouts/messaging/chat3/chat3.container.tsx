@@ -16,13 +16,12 @@ import {
   Message,
   Profile,
 } from '@src/core/model';
-import { conversation6 } from '@src/core/data/conversation';
+import { conversation5, conversation6 } from '@src/core/data/conversation';
 import {
   profile1,
   profile2,
 } from '@src/core/data/profile';
 import { Chat2 } from '../chat2/chat2.component';
-import { TopNavigationElement } from '@src/core/navigation/navigationParams';
 import { imageMessage2 } from '@src/assets/images';
 
 interface State {
@@ -42,34 +41,23 @@ export class Chat3Container extends React.Component<NavigationScreenProps, State
   };
 
   static navigationOptions: NavigationScreenConfig<any> = ({ navigation, screenProps }) => {
-    const chatHeaderConfig: ChatHeaderNavigationStateParams = {
-      interlocutor: navigation.getParam('interlocutor'),
-      lastSeen: navigation.getParam('lastSeen'),
+    const headerProps: ChatHeaderNavigationStateParams = {
+      interlocutor: navigation.getParam('interlocutor', conversation5.interlocutor),
+      lastSeen: navigation.getParam('lastSeen', 'today'),
       onBack: navigation.getParam('onBack'),
       onProfile: navigation.getParam('onProfile'),
     };
 
-    const renderHeader = (headerProps: NavigationScreenProps,
-                          config: ChatHeaderNavigationStateParams) => {
-
+    const header = (navigationProps: NavigationScreenProps) => {
       return (
         <ChatHeader
+          {...navigationProps}
           {...headerProps}
-          lastSeen={config.lastSeen}
-          interlocutor={config.interlocutor}
-          onBack={config.onBack}
-          onProfile={config.onProfile}
         />
       );
     };
 
-    navigation.state.params = {
-      topNavigation: (headerProps: NavigationScreenProps): TopNavigationElement => {
-        return renderHeader(headerProps, chatHeaderConfig);
-      },
-    };
-
-    return { ...navigation, ...screenProps };
+    return { ...navigation, ...screenProps, header };
   };
 
   public componentWillMount(): void {
@@ -85,7 +73,7 @@ export class Chat3Container extends React.Component<NavigationScreenProps, State
   }
 
   private onProfilePress = (profile: Profile): void => {
-    this.props.navigation.navigate('Profile 1');
+    this.props.navigation.navigate('Test Profile');
   };
 
   private onNewMessageChange = (newMessageText: string): void => {

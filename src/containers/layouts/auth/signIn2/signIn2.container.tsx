@@ -5,16 +5,24 @@ import { SignIn2 } from './signIn2.component';
 
 export class SignIn2Container extends React.Component<NavigationScreenProps> {
 
+  private navigationKey: string = 'SignIn2Container';
+
   private onSignInPress = (data: SignInForm2Data) => {
     this.props.navigation.goBack();
   };
 
   private onSignUpPress = () => {
-    this.props.navigation.navigate('Sign Up 2');
+    this.props.navigation.navigate({
+      key: this.navigationKey,
+      routeName: 'Sign Up 2',
+    });
   };
 
   private onForgotPasswordPress = () => {
-    this.props.navigation.navigate('Forgot Password');
+    this.props.navigation.navigate({
+      key: this.navigationKey,
+      routeName: 'Forgot Password',
+    });
   };
 
   public render(): React.ReactNode {

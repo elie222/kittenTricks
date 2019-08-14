@@ -17,7 +17,7 @@ import {
   conversation12,
 } from '@src/core/data/conversation';
 import { ConversationsList } from './conversationsList.component';
-import { TopNavigationElement } from '@src/core/navigation/navigationParams';
+import { TopNavigationElement } from '@src/core/navigation/options';
 import { ConversationListHeader } from './conversationList.header';
 
 interface ConversationsListNavigationStateParams {
@@ -63,13 +63,13 @@ export class ConversationsListContainer extends React.Component<NavigationScreen
       );
     };
 
-    navigation.state.params = {
-      topNavigation: (headerProps: NavigationScreenProps): TopNavigationElement => {
+    return {
+      ...navigation,
+      ...screenProps,
+      header: (headerProps: NavigationScreenProps): TopNavigationElement => {
         return renderHeader(headerProps, conversationHeaderConfig);
       },
     };
-
-    return { ...navigation, ...screenProps };
   };
 
   public componentWillMount(): void {
@@ -84,6 +84,8 @@ export class ConversationsListContainer extends React.Component<NavigationScreen
     searchEnabled: false,
   };
 
+  private navigationKey: string = 'ConversationsListContainer';
+
   private onBackPress = (): void => {
     this.props.navigation.goBack(null);
   };
@@ -93,7 +95,10 @@ export class ConversationsListContainer extends React.Component<NavigationScreen
   };
 
   private onConversationPress = (index: number) => {
-    this.props.navigation.navigate('Chat 1');
+    this.props.navigation.navigate({
+      key: this.navigationKey,
+      routeName: 'Chat 1',
+    });
   };
 
   private onSearchStringChange = (searchString: string): void => {

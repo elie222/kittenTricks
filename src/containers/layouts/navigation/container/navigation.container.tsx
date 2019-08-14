@@ -14,6 +14,7 @@ export class NavigationContainer extends React.Component<NavigationScreenProps, 
   };
 
   private data = routes;
+  private navigationKey: string = 'NavigationContainer';
 
   private onCategorySelect = (selectedLayoutIndex: number) => {
     this.setState({ selectedLayoutIndex });
@@ -22,7 +23,10 @@ export class NavigationContainer extends React.Component<NavigationScreenProps, 
   private onItemSelect = (index: number) => {
     const { [index]: selectedItem } = this.data;
 
-    this.props.navigation.navigate(selectedItem.route);
+    this.props.navigation.navigate({
+      key: this.navigationKey,
+      routeName: selectedItem.route,
+    });
   };
 
   public render(): React.ReactNode {

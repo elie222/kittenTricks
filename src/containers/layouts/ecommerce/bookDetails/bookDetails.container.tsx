@@ -35,9 +35,13 @@ export class BookDetailsContainer extends React.Component<NavigationScreenProps,
     comments: comments,
     currentCommentText: '',
   };
+  private navigationKey: string = 'BookDetailsContainer';
 
   private onBuyBookPress = (): void => {
-    this.props.navigation.navigate('Payment');
+    this.props.navigation.navigate({
+      key: this.navigationKey,
+      routeName: 'Payment',
+    });
   };
 
   private onCommentReplyMorePress = (index: number) => {

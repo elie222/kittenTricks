@@ -12,8 +12,13 @@ export class SettingsContainer extends React.Component<NavigationScreenProps, St
     soundEnabled: true,
   };
 
+  private navigationKey: string = 'SettingsContainer';
+
   private onEditProfilePress = () => {
-    this.props.navigation.navigate('Profile Settings 1');
+    this.props.navigation.navigate({
+      key: this.navigationKey,
+      routeName: 'Profile Settings 1',
+    });
   };
 
   private onChangePasswordPress = () => {

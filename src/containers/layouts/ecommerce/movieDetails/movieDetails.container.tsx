@@ -14,11 +14,16 @@ export class MovieDetailsContainer extends React.Component<NavigationScreenProps
     movie: movie1,
   };
 
+  private navigationKey: string = 'MovieDetailsContainer';
+
   private onScreenshotPress = (index: number) => {
   };
 
   private onBuyTicketPress = () => {
-    this.props.navigation.navigate('Payment');
+    this.props.navigation.navigate({
+      key: this.navigationKey,
+      routeName: 'Payment',
+    });
   };
 
   public render(): React.ReactNode {

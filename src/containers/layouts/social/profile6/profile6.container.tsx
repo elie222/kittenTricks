@@ -30,12 +30,17 @@ export class Profile6Container extends React.Component<NavigationScreenProps, St
     posts: posts,
   };
 
+  private navigationKey: string = 'Profile6Container';
+
   private onFollowPress = () => {
 
   };
 
   private onMessagePress = () => {
-    this.props.navigation.navigate('Chat 1');
+    this.props.navigation.navigate({
+      key: this.navigationKey,
+      routeName: 'Chat 1',
+    });
   };
 
   private onFollowersPress = () => {

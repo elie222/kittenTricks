@@ -14,6 +14,7 @@ export class MessagingContainer extends React.Component<NavigationScreenProps, S
   };
 
   private data = routes;
+  private navigationKey: string = 'MessagingContainer';
 
   private onCategorySelect = (selectedLayoutIndex: number) => {
     this.setState({ selectedLayoutIndex });
@@ -22,7 +23,10 @@ export class MessagingContainer extends React.Component<NavigationScreenProps, S
   private onItemSelect = (index: number) => {
     const { [index]: selectedItem } = this.data;
 
-    this.props.navigation.navigate(selectedItem.route);
+    this.props.navigation.navigate({
+      key: this.navigationKey,
+      routeName: selectedItem.route,
+    });
   };
 
   public render(): React.ReactNode {

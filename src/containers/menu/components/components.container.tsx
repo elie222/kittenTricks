@@ -14,10 +14,15 @@ export class ComponentsContainer extends React.Component<NavigationScreenProps, 
     data: routes,
   };
 
+  private navigationKey: string = 'ComponentsContainer';
+
   private onItemSelect = (index: number) => {
     const { [index]: selectedItem } = this.state.data;
 
-    this.props.navigation.navigate(selectedItem.route);
+    this.props.navigation.navigate({
+      key: this.navigationKey,
+      routeName: selectedItem.route,
+    });
   };
 
   public render(): React.ReactNode {

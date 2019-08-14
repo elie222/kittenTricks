@@ -5,12 +5,17 @@ import { SignUp1 } from './signUp1.component';
 
 export class SignUp1Container extends React.Component<NavigationScreenProps> {
 
+  private navigationKey: string = 'SignUp1Container';
+
   private onSignUpPress = (data: SignUpForm1Data) => {
     this.props.navigation.goBack();
   };
 
   private onSignInPress = () => {
-    this.props.navigation.navigate('Sign In 1');
+    this.props.navigation.navigate({
+      key: this.navigationKey,
+      routeName: 'Sign In 1',
+    });
   };
 
   private onGooglePress = () => {

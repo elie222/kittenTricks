@@ -5,16 +5,24 @@ import { SignIn4 } from './signIn4.component';
 
 export class SignIn4Container extends React.Component<NavigationScreenProps> {
 
+  private navigationKey: string = 'SignIn4Container';
+
   private onSignInPress = (data: SignInForm2Data) => {
     this.props.navigation.goBack();
   };
 
   private onSignUpPress = () => {
-    this.props.navigation.navigate('Sign Up 4');
+    this.props.navigation.navigate({
+      key: this.navigationKey,
+      routeName: 'Sign Up 4',
+    });
   };
 
   private onForgotPasswordPress = () => {
-    this.props.navigation.navigate('Forgot Password');
+    this.props.navigation.navigate({
+      key: this.navigationKey,
+      routeName: 'Forgot Password',
+    });
   };
 
   private onGooglePress = () => {

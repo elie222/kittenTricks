@@ -8,6 +8,8 @@ import { SignIn5 } from './signIn5.component';
 
 export class SignIn5Container extends React.Component<NavigationScreenProps> {
 
+  private navigationKey: string = 'SignIn5Container';
+
   private onSignInEmailPress = (data: SignInForm3Data) => {
     this.props.navigation.goBack();
   };
@@ -17,7 +19,10 @@ export class SignIn5Container extends React.Component<NavigationScreenProps> {
   };
 
   private onSignUpPress = () => {
-    this.props.navigation.navigate('Sign Up 4');
+    this.props.navigation.navigate({
+      key: this.navigationKey,
+      routeName: 'Sign Up 4',
+    });
   };
 
   public render(): React.ReactNode {

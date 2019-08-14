@@ -14,8 +14,13 @@ export class RentApartmentContainer extends React.Component<NavigationScreenProp
     apartment: apartment1,
   };
 
+  private navigationKey: string = 'RentApartmentContainer';
+
   private onBookPress = () => {
-    this.props.navigation.navigate('Payment');
+    this.props.navigation.navigate({
+      key: this.navigationKey,
+      routeName: 'Payment',
+    });
   };
 
   private onPhotoPress = (index: number) => {
